@@ -46,7 +46,7 @@ class ConnectedWebsocketConnection(object):
         self.last_message_recv = time.time()
         
     async def send_message(self, msg: str):
-        await self.ws.send(msg)
+        await self.ws.send(f"[{self.id}]: msg")
 
 
 class WebsocketTestingClient(object):
@@ -185,11 +185,12 @@ class WebsocketTestingClient(object):
                     return True
 
                 self.before_recv(statedict)
-
-                # Wait for a new message
-                message = yield from websocket.recv()
+                
+                # send message
                 if self.send_messages:
                     yield from connected_websocket.send_message("test")
+                # Wait for a new message
+                message = yield from websocket.recv()
                 self.after_recv(statedict, message)
 
                 # Increment our counters
