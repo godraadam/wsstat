@@ -4,7 +4,7 @@ import time
 import urwid
 import urwid.curses_display
 
-from websockets.protocol import State
+from websockets.legacy.protocol import State
 
 palette = [
     ('starting', 'white', ''),

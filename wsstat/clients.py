@@ -11,10 +11,10 @@ from ssl import CertificateError
 
 import urwid
 import websockets
-import websockets.handshake
+import websockets.legacy.handshake
 
 from collections import OrderedDict, deque
-from websockets.protocol import State
+from websockets.legacy.protocol import State
 from wsstat.gui import BlinkBoardWidget, LoggerWidget
 
 import logging
