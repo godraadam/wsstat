@@ -44,6 +44,10 @@ class ConnectedWebsocketConnection(object):
     def process_message(self, message):
         self.increment_message_counter()
         self.last_message_recv = time.time()
+        
+    @asyncio.coroutine
+    def send_message(self, msg: str, delay: float = 0.5):
+        yield from self.ws.send_message(msg)
 
 
 class WebsocketTestingClient(object):
@@ -87,6 +91,7 @@ class WebsocketTestingClient(object):
             self.setup_tasks()
 
         self.insecure_connection = kwargs.get('insecure', False)
+        self.send_messages = kwargs.get('send_messages', False)
 
 
         self.blinkboard = BlinkBoardWidget()
@@ -184,7 +189,8 @@ class WebsocketTestingClient(object):
 
                 # Wait for a new message
                 message = yield from websocket.recv()
-
+                if self.send_messages:
+                    connected_websocket.send_message("test")
                 self.after_recv(statedict, message)
 
                 # Increment our counters
