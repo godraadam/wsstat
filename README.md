@@ -37,9 +37,7 @@ It should go without saying, but pull requests are *absolutely* welcome!
 When you pass the `--demo` flag to WSStat, it will spin up an asynchronous websocket server on port `65432` point the websocket monitors to that server, allowing you to see functionality with a real websocket server.
 
 #### Installation
-Install from pip - `pip install wsstat`
-
-**Note:** if you have python 2 and 3 installed on the same system, you have to use `pip3 install wsstat`!
+Install from pip - `python -m pip install git+https://github.com/godraadam/wsstat.git`
 
 The installation should be 100% straight forward and work fine. If that's not the case, please file a ticket!
 

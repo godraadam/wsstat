@@ -16,11 +16,8 @@ with open('requirements.txt') as f:
     dependencies = f.read().splitlines()
 
 long_description = """
+This is a fork of https://github.com/Fitblip/wsstat.
 WSStat is a tool for stress testing and monitoring the health of websocket servers/connections.
-
-You can find a demo and the project itself at https://github.com/Fitblip/wsstat.
-
-As of right now this tool is still a bit rough around the edges, but stable enough for a v1.
 """
 
 class PyTest(TestCommand):
@@ -37,8 +34,8 @@ class PyTest(TestCommand):
 setup(
     name='wsstat',
     version=wsstat.__version__,
-    url='http://github.com/fitblip/wsstat/',
-    author='Ryan Sears',
+    url='http://github.com/godraadam/wsstat/',
+    author='Ryan Sears (original), godraadam (fork)',
     tests_require=['pytest'],
     install_requires=dependencies,
     cmdclass={'test': PyTest},
