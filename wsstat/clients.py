@@ -45,9 +45,8 @@ class ConnectedWebsocketConnection(object):
         self.increment_message_counter()
         self.last_message_recv = time.time()
         
-    @asyncio.coroutine
-    def send_message(self, msg: str, delay: float = 0.5):
-        yield from self.ws.send_message(msg)
+    async def send_message(self, msg: str):
+        await self.ws.send(msg)
 
 
 class WebsocketTestingClient(object):
@@ -190,7 +189,7 @@ class WebsocketTestingClient(object):
                 # Wait for a new message
                 message = yield from websocket.recv()
                 if self.send_messages:
-                    connected_websocket.send_message("test")
+                    yield from connected_websocket.send_message("test")
                 self.after_recv(statedict, message)
 
                 # Increment our counters
